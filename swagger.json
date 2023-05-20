@@ -1,0 +1,972 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Swagger School",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3005"
+    }
+  ],
+  "tags": [
+    {
+      "name": "curso",
+      "description": "Lista de cursos"
+    },
+    {
+      "name": "disciplina",
+      "description": "Lista de disciplinas"
+    },
+    {
+      "name": "aula",
+      "description": "Lista de aulas"
+    },
+    {
+      "name": "professor",
+      "description": "Lista de professores"
+    },
+    {
+      "name": "aluno",
+      "description": "Lista de alunos"
+    }
+  ],
+  "paths": {
+    "/curso/{id}": {
+      "get": {
+        "tags": [
+          "curso"
+        ],
+        "summary": "Recebe um objeto curso",
+        "description": "Recebe um objeto do tipo curso.",
+        "operationId": "getCursoById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do curso a ser requisitado",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Curso"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválida"
+          },
+          "404": {
+            "description": "Curso não encontrado"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "curso"
+        ],
+        "summary": "Deleta um curso.",
+        "description": "Deleta um curso.",
+        "operationId": "deleteCurso",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do curso a ser requisitado",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "ID inválido"
+          },
+          "404": {
+            "description": "Curso não encontrado"
+          }
+        }
+      }
+    },
+    "/curso": {
+      "get": {
+        "tags": [
+          "curso"
+        ],
+        "summary": "Recebe uma lista de objetos cursos.",
+        "description": "Recebe uma lista de objetos cursos.",
+        "operationId": "getAllCursos",
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Curso"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "curso"
+        ],
+        "summary": "Adiciona um curso.",
+        "description": "Adiciona um curso.",
+        "operationId": "createCurso",
+        "requestBody": {
+          "description": "Adiciona um novo curso.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Curso"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Curso"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "input inválido"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "curso"
+        ],
+        "summary": "Atualiza um curso.",
+        "description": "Atualiza um curso por Id.",
+        "operationId": "updateCurso",
+        "requestBody": {
+          "description": "Atualiza um curso.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Curso"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Curso"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido"
+          },
+          "404": {
+            "description": "Curso não encontrado"
+          }
+        }
+      }
+    },
+    "/disciplina/{id}": {
+      "get": {
+        "tags": [
+          "disciplina"
+        ],
+        "summary": "Recebe um objeto disciplina",
+        "description": "Recebe um objeto do tipo disciplina.",
+        "operationId": "getDisciplinaById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID da disciplina a ser requisitada",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Disciplina"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválida"
+          },
+          "404": {
+            "description": "Disciplina não encontrada"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "disciplina"
+        ],
+        "summary": "Deleta uma disciplina.",
+        "description": "Deleta uma disciplina.",
+        "operationId": "deleteDisciplina",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID da disciplina a ser requisitada.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "ID inválido"
+          },
+          "404": {
+            "description": "Disciplina não encontrada"
+          }
+        }
+      }
+    },
+    "/disciplina": {
+      "get": {
+        "tags": [
+          "disciplina"
+        ],
+        "summary": "Recebe uma lista de objetos disciplinas.",
+        "description": "Recebe uma lista de objetos disciplinas.",
+        "operationId": "getAllDisciplinas",
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Disciplina"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "disciplina"
+        ],
+        "summary": "Adiciona uma disciplina.",
+        "description": "Adiciona um país.",
+        "operationId": "createDisciplina",
+        "requestBody": {
+          "description": "Adiciona uma nova disciplina.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Disciplina"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Disciplina"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "input inválido"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "disciplina"
+        ],
+        "summary": "Atualiza uma disciplina.",
+        "description": "Atualiza uma disciplina por Id.",
+        "operationId": "updateDisciplina",
+        "requestBody": {
+          "description": "Atualiza uma disciplina.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Disciplina"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Disciplina"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido"
+          },
+          "404": {
+            "description": "Disciplina não encontrado"
+          }
+        }
+      }
+    },
+    "/aula/{id}": {
+      "get": {
+        "tags": [
+          "aula"
+        ],
+        "summary": "Recebe uma aula",
+        "description": "Recebe um objeto do tipo aula.",
+        "operationId": "getAulaById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID da aula a ser requisitada",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Aula"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido"
+          },
+          "404": {
+            "description": "Aula não encontrada"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "aula"
+        ],
+        "summary": "Deleta uma aula.",
+        "description": "Deleta uma aula.",
+        "operationId": "deleteAula",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID da aula a ser requisitada",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "ID inválido"
+          },
+          "404": {
+            "description": "Aula não encontrada"
+          }
+        }
+      }
+    },
+    "/aula": {
+      "get": {
+        "tags": [
+          "aula"
+        ],
+        "summary": "Recebe uma lista de objetos aulas.",
+        "description": "Recebe uma lista de objetos aulas.",
+        "operationId": "getAllAulas",
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Aula"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "aula"
+        ],
+        "summary": "Adiciona uma aula.",
+        "description": "Adiciona uma aula.",
+        "operationId": "createAula",
+        "requestBody": {
+          "description": "Adiciona uma nova aula.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Aula"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Aula"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "input inválido"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "aula"
+        ],
+        "summary": "Atualiza uma aula.",
+        "description": "Atualiza uma aula por Id.",
+        "operationId": "updateAula",
+        "requestBody": {
+          "description": "Atualiza uma aula.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Aula"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Aula"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido"
+          },
+          "404": {
+            "description": "Aula não encontrada"
+          }
+        }
+      }
+    },
+    "/professor/{id}": {
+      "get": {
+        "tags": [
+          "professor"
+        ],
+        "summary": "Recebe um objeto professor",
+        "description": "Recebe um objeto do tipo professor.",
+        "operationId": "getProfessorById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do professor a ser requisitado",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Professor"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválida"
+          },
+          "404": {
+            "description": "Professor não encontrado"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "professor"
+        ],
+        "summary": "Deleta um professor.",
+        "description": "Deleta um professor.",
+        "operationId": "deleteProfessor",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do professor a ser requisitado",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "ID inválido"
+          },
+          "404": {
+            "description": "Professor não encontrado"
+          }
+        }
+      }
+    },
+    "/professor": {
+      "get": {
+        "tags": [
+          "professor"
+        ],
+        "summary": "Recebe uma lista de objetos professores.",
+        "description": "Recebe uma lista de objetos professores.",
+        "operationId": "getAllProfessores",
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Professor"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "professor"
+        ],
+        "summary": "Adiciona um professor.",
+        "description": "Adiciona um professor.",
+        "operationId": "createProfessor",
+        "requestBody": {
+          "description": "Adiciona um professor.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Professor"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Professor"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "input inválido"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "professor"
+        ],
+        "summary": "Atualiza um professor.",
+        "description": "Atualiza um professor por Id.",
+        "operationId": "updateProfessor",
+        "requestBody": {
+          "description": "Atualiza um professor.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Professor"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Professor"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido"
+          },
+          "404": {
+            "description": "Professor não encontrado"
+          }
+        }
+      }
+    },
+    "/aluno/{id}": {
+      "get": {
+        "tags": [
+          "aluno"
+        ],
+        "summary": "Recebe um objeto aluno",
+        "description": "Recebe um objeto do tipo aluno.",
+        "operationId": "getAlunoById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do aluno a ser requisitado",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Aluno"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválida"
+          },
+          "404": {
+            "description": "Aluno não encontrado"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "aluno"
+        ],
+        "summary": "Deleta um aluno.",
+        "description": "Deleta um aluno.",
+        "operationId": "deleteAluno",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do aluno a ser requisitado",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "ID inválido"
+          },
+          "404": {
+            "description": "Aluno não encontrado"
+          }
+        }
+      }
+    },
+    "/aluno": {
+      "get": {
+        "tags": [
+          "aluno"
+        ],
+        "summary": "Recebe uma lista de objetos alunos.",
+        "description": "Recebe uma lista de objetos alunos.",
+        "operationId": "getAllAlunos",
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Aluno"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "aluno"
+        ],
+        "summary": "Adiciona um aluno.",
+        "description": "Adiciona um aluno.",
+        "operationId": "createAluno",
+        "requestBody": {
+          "description": "Adiciona um novo aluno.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Aluno"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Aluno"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "input inválido"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "aluno"
+        ],
+        "summary": "Atualiza um aluno.",
+        "description": "Atualiza um aluno por Id.",
+        "operationId": "updateAluno",
+        "requestBody": {
+          "description": "Atualiza um aluno.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Aluno"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Aluno"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido"
+          },
+          "404": {
+            "description": "Aluno não encontrado"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Aula": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 10
+          },
+          "dt_aula": {
+            "type": "string",
+            "format": "date",
+            "example": "05/05/2005"
+          },
+          "tb_curso_id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 10
+          },
+          "tb_disciplina_id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 10
+          },
+          "tb_professor_id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 10
+          }
+        }
+      },
+      "Curso": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 10
+          },
+          "nome": {
+            "type": "string",
+            "example": "Medicina"
+          },
+          "dt_inicio": {
+            "type": "string",
+            "format": "date",
+            "example": "05/05/2005"
+          }
+        }
+      },
+      "Disciplina": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 10
+          },
+          "nome": {
+            "type": "string",
+            "example": "Fisiologia"
+          }
+        }
+      },
+      "Professor": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 10
+          },
+          "nome": {
+            "type": "string",
+            "example": "Pedro"
+          },
+          "cpf": {
+            "type": "string",
+            "example": "58962314578"
+          },
+          "email": {
+            "type": "string",
+            "example": "pedro@email.com"
+          },
+          "tb_disciplina_id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 10
+          }
+        }
+      },
+      "Aluno": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 10
+          },
+          "nome": {
+            "type": "string",
+            "example": "Pedro"
+          },
+          "dt_nasc": {
+            "type": "string",
+            "format": "date",
+            "example": "05/05/2005"
+          },
+          "email": {
+            "type": "string",
+            "example": "pedro@email.com"
+          },
+          "ativo": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      }
+    }
+  }
+}
